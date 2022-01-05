@@ -8,5 +8,6 @@ while number != 0:
     if last_num == 5:
         print('Gap detected')
         break
+    number //= 10
 print('\n total sum: ', summa)
 
