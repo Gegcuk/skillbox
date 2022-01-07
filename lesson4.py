@@ -10,4 +10,5 @@ while number != 0:
         break
     number //= 10
 print('\n total sum: ', summa)
+print('Finish')
 
