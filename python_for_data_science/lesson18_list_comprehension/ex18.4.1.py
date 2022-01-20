@@ -17,12 +17,12 @@
 # Однако при таких входных данных программа почему-то работает неправильно: она выводит ответ 0, когда правильный ответ
 # 14. Помогите другу исправить программу, а также сделайте так, чтобы список цен генерировался случайно (диапазон можно
 # выбрать любой).
+import random
 
-original_prices = [x for x in range(1, 101)]
+original_prices = [random.randint(-50, 100) for x in range(1, 101)]
 
-new_prices = original_prices[:]
+new_prices = [original_prices[i_price] if original_prices[i_price] > 0 else 0 for i_price in range(0, len(original_prices))]
+print(sum(original_prices))
+print(sum(new_prices))
 
-for i in range(len(original_prices)):
-    if new_prices[i] < 0:
-        new_prices[i] = 0
 print("Мы потеряли: ",  sum(original_prices) - sum(new_prices))
