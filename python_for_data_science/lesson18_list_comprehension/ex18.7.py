@@ -117,6 +117,7 @@ def ex4():
     print(alphabet[3:5])
     print(alphabet[4:2:-1])
 
+<<<<<<< HEAD
 
 def ex5():
     # Задача 5. Разворот
@@ -134,6 +135,19 @@ def ex5():
 
 
 
+=======
+# Задача 5. Разворот
+#
+# На вход в программу подаётся строка, в которой буква h встречается как минимум два раза. Реализуйте код, который
+# разворачивает последовательность символов, заключённую между первым и последним появлением буквы h, в противоположном
+# порядке.
+
+entered_string = input("Enter string with 2 'h': ")
+first_h_index = entered_string.index('h')
+second_h_index = entered_string[first_h_index+1:].index('h')+first_h_index+1
+result_string =entered_string[:first_h_index] + entered_string[second_h_index:first_h_index-1:-1] + entered_string[second_h_index+1:]
+print(result_string)
+>>>>>>> e8e09535dbc45df18ef795041bc601a2bcfb5906
 
 
 
