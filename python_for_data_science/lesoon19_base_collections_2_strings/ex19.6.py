@@ -109,3 +109,37 @@ def ex19_6_5():
     while not is_password_correct(password):
         password = input('Пароль ненадёжный. Попробуйте ещё раз: ')
     print('Это надёжный пароль!')
+
+
+def ex19_6_6():
+    # С увеличением объёма данных возникла потребность в сжатии этих данных, при этом без потери важной информации. Для
+    # этого было придумано кодирование, которое осуществляется следующим образом:
+    #
+    # s = 'aaaabbсaa' преобразуется в 'a4b2с1a2', то есть группы одинаковых символов исходной строки заменяются на этот
+    # символ и количество его повторений в этой позиции строки.
+    #
+    # Напишите программу, которая считывает строку, кодирует её предложенным алгоритмом и выводит закодированную
+    # последовательность на экран. Кодирование должно учитывать регистр символов.
+    #
+    # Пример:
+    # Введите строку: aaAAbbсaaaA
+    # Закодированная строка: a2A2b2с1a3A1
+    user_message = input('Enter your msg: ')
+    count_repeater = 1
+    current_symbol = user_message[0]
+    next_symbol = user_message[1]
+    result_message = ''
+    for i_sym in range(len(user_message) - 1):
+        current_symbol = user_message[i_sym]
+        next_symbol = user_message[i_sym + 1]
+        if current_symbol == next_symbol:
+            count_repeater += 1
+        else:
+            result_message += current_symbol + str(count_repeater)
+            count_repeater = 1
+    if user_message[len(user_message) - 1] == user_message[len(user_message) - 2]:
+        count_repeater += 1
+    else:
+        result_message += user_message[len(user_message) - 1] + str(count_repeater)
+        count_repeater = 1
+    print(result_message)
