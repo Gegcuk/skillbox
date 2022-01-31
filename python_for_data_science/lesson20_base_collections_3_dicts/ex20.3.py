@@ -71,4 +71,3 @@ def ex20_3_2():
            if player.get('team') == 'C' and player.get('status') == 'Travel'
            ]
           )
-
