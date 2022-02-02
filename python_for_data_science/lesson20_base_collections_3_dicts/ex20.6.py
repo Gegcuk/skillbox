@@ -68,3 +68,122 @@ def ex20_6_2():
         if not is_found:
             print('No data about {}'.format(city))
 
+
+def ex20_6_3():
+    # Задача 3. Криптовалюта
+    # При работе с API (application programming interface) сайта биржи по криптовалюте вы получили вот такие данные
+    # в виде словаря:
+    data = {
+        "address": "0x544444444444",
+        "ETH": {
+            "balance": 444,
+            "totalIn": 444,
+            "totalOut": 4
+        },
+        "count_txs": 2,
+        "tokens": [
+            {
+                "fst_token_info": {
+                    "address": "0x44444",
+                    "name": "fdf",
+                    "decimals": 0,
+                    "symbol": "dsfdsf",
+                    "total_supply": "3228562189",
+                    "owner": "0x44444",
+                    "last_updated": 1519022607901,
+                    "issuances_count": 0,
+                    "holders_count": 137528,
+                    "price": False
+                },
+                "balance": 5000,
+                "totalIn": 0,
+                "total_out": 0
+            },
+            {
+                "sec_token_info": {
+                    "address": "0x44444",
+                    "name": "ggg",
+                    "decimals": "2",
+                    "symbol": "fff",
+                    "total_supply": "250000000000",
+                    "owner": "0x44444",
+                    "last_updated": 1520452201,
+                    "issuances_count": 0,
+                    "holders_count": 20707,
+                    "price": False
+                },
+                "balance": 500,
+                "totalIn": 0,
+                "total_out": 0
+            }
+
+        ]
+
+    }
+    # Теперь вам предстоит немного обработать эти данные.
+    #
+    # Напишите программу, которая выполняет следующий алгоритм действий:
+    #
+    # Вывести списки ключей и значений словаря.
+    # В “ETH” добавить ключ “total_diff” со значением 100.
+    # Внутри “fst_token_info” значение ключа “name” поменять с “fdf” на “doge”.
+    # Удалить “total_out” из tokens и присвоить его значение в “total_out” внутри “ETH”.
+    # Внутри "sec_token_info" изменить название ключа “price” на “total_price”.
+    for key in data.keys():
+        print('{} : {}'.format(key, data[key]))
+    data['ETH']['total_diff'] = 100
+    print(data['ETH'])
+    data['tokens'][0]['fst_token_info']['name'] = 'doge'
+    print(data['tokens'][0])
+    data['ETH']['totalOut'] = data['tokens'][1].pop('total_out')
+    print(data['ETH'], '\n', data['tokens'][1])
+    data['tokens'][1]['sec_token_info']['total_price'] = data['tokens'][1]['sec_token_info'].pop('price')
+    print(data['tokens'][1]['sec_token_info'])
+
+
+def ex20_6_4():
+    # Задача 4. Товары
+    # В базе данных магазина вся необходимая информация по товарам делится на два словаря: первый отвечает за коды товаров,
+    # второй — за списки количества разнообразных товаров на складе:
+    goods = {
+        'Лампа': '12345',
+        'Стол': '23456',
+        'Диван': '34567',
+        'Стул': '45678',
+    }
+    store = {
+        '12345': [
+            {'quantity': 27, 'price': 42},
+        ],
+        '23456': [
+            {'quantity': 22, 'price': 510},
+            {'quantity': 32, 'price': 520},
+        ],
+        '34567': [
+            {'quantity': 2, 'price': 1200},
+            {'quantity': 1, 'price': 1150},
+        ],
+        '45678': [
+            {'quantity': 50, 'price': 100},
+            {'quantity': 12, 'price': 95},
+            {'quantity': 43, 'price': 97},
+        ],
+    }
+    # Каждая запись второго словаря отображает, сколько и по какой цене закупалось товаров (цена указана за 1 шт.).
+    #
+    # Напишите программу, которая рассчитывает, на какую сумму лежит каждого товара на складе, и выводит эту информацию на экран.
+    #
+    # Результат работы программы.
+    # Лампа - 27 шт, стоимость 1134 руб
+    # Стол - 54 шт, стоимость 27860 руб
+    # Диван - 3 шт, стоимость 3550 руб
+    # Стул - 105 шт, стоимость 10311 руб
+    for product in goods.keys():
+        total_quantity = 0
+        total_price = 0
+        for parameters in store[goods[product]]:
+            total_quantity += parameters['quantity']
+            total_price += parameters['price'] * parameters['quantity']
+        print(f'{product} - {total_quantity} шт., price {total_price} rur.')
+
+
