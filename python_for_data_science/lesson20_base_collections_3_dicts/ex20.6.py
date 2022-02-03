@@ -224,5 +224,3 @@ def ex20_6_5():
         new_dict[value].append(key)
     print(new_dict)
 
-
-
